@@ -1,0 +1,159 @@
+% Template:     Informe/Reporte LaTeX
+% Documento:    Archivo principal
+% Versión:      5.5.4 (16/09/2018)
+% Codificación: UTF-8
+%
+% Autor: Pablo Pizarro R. @ppizarror
+%        Facultad de Ciencias Físicas y Matemáticas
+%        Universidad de Chile
+%        pablo.pizarro@ing.uchile.cl, ppizarror.com
+%
+% Manual template: [http://latex.ppizarror.com/Template-Informe/]
+% Licencia MIT:    [https://opensource.org/licenses/MIT/]
+
+% CREACIÓN DEL DOCUMENTO
+\documentclass[letterpaper,11pt]{article} % Articulo tamaño carta, 11pt
+\usepackage[utf8]{inputenc} % Codificación UTF-8
+
+% INFORMACIÓN DEL DOCUMENTO
+\def\titulodelinforme {Tarea 2}
+\def\temaatratar {Encontrar ceros de funciones}
+
+\def\autordeldocumento {Sebastián Vargas Valenzuela}
+\def\nombredelcurso {Métodos Numéricos para la Ciencia e Ingeniería}
+\def\codigodelcurso {FI-3104-1}
+
+\def\nombreuniversidad {Universidad de Chile}
+\def\nombrefacultad {Facultad de Ciencias Físicas y Matemáticas}
+\def\departamentouniversidad {Departamento de Física}
+\def\imagendepartamento {departamentos/dfi}
+\def\imagendepartamentoescala {0.2}
+\def\localizacionuniversidad {Santiago, Chile}
+
+% INTEGRANTES, PROFESORES Y FECHAS
+\def\tablaintegrantes {
+\begin{tabular}{ll}
+	Autor:
+	& \begin{tabular}[t]{@{}l@{}}
+		Sebastián Vargas Valenzuela
+		\end{tabular} \\
+	Profesor:
+	& \begin{tabular}[t]{@{}l@{}}
+		Valentino Gonzáles
+	\end{tabular} \\
+	Auxiliares:
+	& \begin{tabular}[t]{@{}l@{}}
+		Jou-Hui Ho \\
+		José Vines
+	\end{tabular} \\
+
+	\multicolumn{2}{l}{Fecha de realización: \today} \\
+	\multicolumn{2}{l}{Fecha de entrega: \today} \\
+	\multicolumn{2}{l}{\localizacionuniversidad}
+\end{tabular}}{
+}
+
+% CONFIGURACIONES
+\input{lib/config}
+
+% IMPORTACIÓN DE LIBRERÍAS
+\input{lib/env/imports}
+
+% IMPORTACIÓN DE FUNCIONES Y ENTORNOS
+\input{lib/cmd/all}
+
+% IMPORTACIÓN DE ESTILOS
+\input{lib/style/all}
+
+% CONFIGURACIÓN INICIAL DEL DOCUMENTO
+\input{lib/cfg/init}
+
+% INICIO DE LAS PÁGINAS
+\begin{document}
+
+% PORTADA
+\input{lib/page/portrait}
+
+% CONFIGURACIÓN DE PÁGINA Y ENCABEZADOS
+\input{lib/cfg/page}
+
+
+
+% CONFIGURACIONES FINALES
+\input{lib/cfg/final}
+
+% ======================= INICIO DEL DOCUMENTO =======================
+
+\section{Pregunta 1: Catenaria}
+\subsection{Introducción}
+El presente problema consiste en resolver las un problema de catenaria, necesario para implementar un cable entre dos postes bajo restricciones, las cuales son que los postes deben estar 20 metros separados y el cable debe caer 7.5 metros en el punto medio entre los postes.
+\subsection{Procedimiento}
+Se considera la ecuación de una catenaria centrada en cero.
+
+$$ f(x) = \frac{a}{2} \left( e^{x/a} + e^ {-x/a} \right)=a \cdot cosh(\frac{x}{a}) $$
+
+Para obtener el valor de $a$, necesario para calcular el valor para el largo del cable, se obtuvieron dos ecuaciones, una que relaciona a con el tamaño de los postes que denotaremos por $"b"$. Dado que $a$ es el valor que tiene la función en $x=0$ se puede deducir geométricamente que:
+
+$$b=7.5+a$$
+
+Luego, considerando que evaluado en los bordes la función entrega el valor de $p$ tenemos.
+$$f(10)=b=a\cdot cosh(\frac{10}{a})$$
+
+Igualando ambas ecuaciones obtenemos finalmente.
+
+$$a\cdot cosh(\frac{10}{a})-a-7.5=0$$
+
+Obteniendo una ecuación para a en la cual hay que encontrar el cero para que se cumpla. De este modo se plantea la función:
+$$g(a)=a\cdot cosh(\frac{10}{a})-a-7.5$$
+
+A esta función se le calcula el cero utilizando el método de newton simple, dado que es fácil derivar la función. Además la curva es exponencial en naturaleza y suave, como se observa en la figura 1, haciendo qué el método de newton sea bastante eficaz.
+
+Después de obtener el valor para $a$ podemos utilizarlo para calcular el largo del cable. Al realizar la siguiente integral.
+$$ l = \int_{x_1}^{x_2}dx\sqrt{1 + f'(x)^2} $$
+$$\Rightarrow l = \int_{x_1}^{x_2}dx\sqrt{1 + sinh^2(x/a)}$$
+\begin{center} 
+
+ \includegraphics[scale=0.65]{img/1.png}
+ 
+ Figura 1: g(a) vs a
+ 
+\end{center}
+
+
+\subsection{Resultados}
+
+Al realizar los cálculos numéricos se obtuvieron los siguientes resultados para $a$ y el largo del cable.
+
+\begin{table}
+\centering
+\begin{tabular}{|l|l|}
+\hline
+$a$    & Largo   \\ \hline
+7.6670 & 26.1729 \\ \hline
+\end{tabular}
+\end{table}
+
+
+\subsection{Conclusión}
+Se pudo resolver satisfactoriamente el problema de la catenaria de forma numérica.
+
+
+
+
+\section{Pregunta 2: Integrales}
+\subsection{Introducción}
+Se desea encontrar todos los ceros simultáneos de dos funciones polinómicas multivariables. Las cuales se presentan a continuación.
+% \begin{equation}
+  \begin{align}
+    F_1(x, y) &= x^4 + y^4 - 15 \label{eq1}\\
+    F_2(x, y) &= x^3y - xy^3 - y/2 - 1.269 \label{eq2}
+  \end{align}
+% \end{equation}
+
+Para ello se 
+\subsection{Procedimiento}    
+% 
+
+
+% FIN DEL DOCUMENTO
+\end{document}
